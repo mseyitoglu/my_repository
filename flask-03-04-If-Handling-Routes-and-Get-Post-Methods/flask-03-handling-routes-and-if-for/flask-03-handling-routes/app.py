@@ -71,7 +71,18 @@ def greet(user_name):
 # Create a function named list10 which creates a list counting from 1 to 10 within `list10.html` 
 # and assign to the route of ('/list10'). 
 # Please find a template html file named `list10.html` which shows a list counting from 1 to 10 under `templates` folder 
+# Create a function named list10 which creates a list counting from 1 to 10 within `list10.html` 
+# and assign to the route of ('/list10').
+@app.route("/list10")
+def list10():
+    return render_template("list10.html")
 
+
+# Create a function named evens which show the even numbers from 1 to 10 within `evens.html` 
+# and assign to the route of ('/evens'). 
+@app.route("/evens")
+def evens():
+    return render_template("evens.html")
 
 
 # Create a function named evens which show the even numbers from 1 to 10 within `evens.html` 
