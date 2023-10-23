@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Create a website using an EC2 instance and security group
+
+Parameters:
+
+ParameterName:
+  Description: Latest Linux AMI ID
+  Type: AWS::EC2::Image::Id
+  Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+  
+Resources:
+
+  rSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable http and ssh for a web server
+      GroupName: nable-http-and-ssh
+      SecurityGroupIngress: 
+      - CidrIp: 0.0.0.0/0
+        FromPort: 80
+        IpProtocol: tcp
+        ToPort: 80
+      - CidrIp: 0.0.0.0/0
+        FromPort: 22
+        IpProtocol: tcp
+        ToPort: 22
+  rWebSerwer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref pImageId
+      InstanceType: t2.micro
+      KeyName: MS_EC2_001
+      SecurityGroupIds: 
+      - !GetAtt rSecurityGroup.GroupId
+      Tags: 
+        Key: Name
+        Value: mstf-server
+
+      UserData:
+
+  
+#Outputs:
