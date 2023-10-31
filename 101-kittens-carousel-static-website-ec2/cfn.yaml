@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Create a website using an EC2 instance and security group
+  
+Parameters:
+
+  pImageId:
+    Description: Latest Linux AMI ID
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+
+  pKeyPair:
+    Description: Key pair name
+    Type: AWS::EC2::KeyPair::KeyName
+  
+Resources:
+
+  rSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP and SSH for a web server
+      GroupName: enable-http-and-ssh
+      SecurityGroupIngress: 
+      - CidrIp: 0.0.0.0/0
+        IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+      - CidrIp: 0.0.0.0/0
+        IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+
+  rWebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref pImageId
+      InstanceType: t2.micro
+      KeyName: !Ref pKeyPair
+      SecurityGroupIds: 
+      - !GetAtt rSecurityGroup.GroupId
+      Tags: 
+      - Key: Name
+        Value: altaz-web-server
+      # UserData: "String"
