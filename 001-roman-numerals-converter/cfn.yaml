@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 
+  "bash_script roman numerals"
+  
+Parameters:
+  
+Resources:
+  rSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: 
+      GroupDescription: 
+      VpcId:
+      SecurityGroupIngress:
+        - Security Group Rule
+      SecurityGroupEgress:
+        - Security Group Rule
+      Tags:
+        - Key:
+          Value:
+  

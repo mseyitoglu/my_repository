@@ -1,12 +1,10 @@
 #!/bin/bash
 
-yum update -y
-yum install python3 -y
-yum install pip -y
-pip3 install flask
-from Flask import Flask
-
-FOLDER="https://raw.githubsercontent.com/mseyitoglu/my_repository/master/001-roman-numerals-converter"
+sudo yum update -y
+sudo yum install python3 -y
+sudo yum install pip -y
+sudo pip3 install flask
+FOLDER="https://raw.githubusercontent.com/mseyitoglu/my_repository/master/001-roman-numerals-converter"
 
 cd /home/ec2-user
 
