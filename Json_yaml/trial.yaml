@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: |
+  My first trial of CFN myself
+
+# Parameters:
+  
+Resources:
+  
+  MySecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: ssh-enabled
+      GroupName: ssh-http enabled
+      SecurityGroupIngress: 
+        - CidrIp: 0.0.0.0/0
+          FromPort: 80
+          IpProtocol: TCP
+          ToPort: 80
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: TCP
+          ToPort: 22
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-059cdad1f35de63c0
+      InstanceType: t2.micro
+      KeyName: ms_key_mac
+      SecurityGroupIds: 
+        - !GetAtt MySecGroup.GroupId 
+      Tags: 
+        - Key: Name
+          Value: Mustafa_Web_server
+        
+
+      
+    # Outputs:
