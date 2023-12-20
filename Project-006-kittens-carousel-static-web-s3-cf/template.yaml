@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Template to build static S3 website, CloudFront and Route53 records
+
+Parameters:
+  pKittenDomainName:
+    Description: FUll domain name for kittens website
+    Type: String
+    Default:
+        
+  
+Resources:
+  rKittensBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "String"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      ReplicationConfiguration:
+        Role: "false"
+        Rules:
+          -
+      Tags: 
+        Tags
+      VersioningConfiguration:
+        Status: "false"
+      WebsiteConfiguration:
+        ErrorDocument: "String"
+        IndexDocument: "String"
+        RoutingRules:
+          -  
+
+
+
+
+
+#Outputs:
